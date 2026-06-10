@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bridge Social - Home</title>
+    <link rel="stylesheet" href="runtime.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">Bridge Social</div>
+      <input class="search" type="search" placeholder="Search posts, people, tags..." />
+      <nav class="menu" aria-label="Primary">
+        <a href="#">Home</a>
+        <a href="#">Explore</a>
+        <a href="#">Messages</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="panel left">
+        <h2>Trending</h2>
+        <ul>
+          <li>#kubernetes</li>
+          <li>#frontend</li>
+          <li>#docker</li>
+          <li>#css</li>
+        </ul>
+      </aside>
+
+      <main class="feed" aria-label="Post feed">
+        <section class="panel composer">
+          <h2>Create Post</h2>
+          <textarea rows="3" placeholder="What do you want to share?"></textarea>
+          <button type="button">Post</button>
+        </section>
+
+        <article class="panel post">
+          <div class="post-head">
+            <span class="avatar">AK</span>
+            <div>
+              <p class="name">Ava Kim</p>
+              <p class="meta">2h ago</p>
+            </div>
+          </div>
+          <p>Built my first static app, containerized it, and deployed to local Kubernetes today.</p>
+          <div class="actions">
+            <button type="button">Like</button>
+            <button type="button">Comment</button>
+            <button type="button">Share</button>
+          </div>
+        </article>
+
+        <article class="panel post">
+          <div class="post-head">
+            <span class="avatar">JR</span>
+            <div>
+              <p class="name">Jordan Reed</p>
+              <p class="meta">5h ago</p>
+            </div>
+          </div>
+          <p>Tip: keep your image small with nginx:alpine for fast local build and startup.</p>
+          <div class="actions">
+            <button type="button">Like</button>
+            <button type="button">Comment</button>
+            <button type="button">Share</button>
+          </div>
+        </article>
+      </main>
+
+      <aside class="panel right">
+        <h2>Suggested</h2>
+        <ul>
+          <li>Container Club</li>
+          <li>Cloud Learners</li>
+          <li>CSS Playground</li>
+        </ul>
+      </aside>
+    </div>
+  </body>
+</html>

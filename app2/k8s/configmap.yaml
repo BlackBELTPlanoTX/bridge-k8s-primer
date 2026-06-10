@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-two-config
+  namespace: lesson-bonus
+data:
+  BG_COLOR: "#DDDDDD"
