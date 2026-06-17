@@ -1,0 +1,10 @@
+services:
+  frontend-one:
+    build:
+      context: ./app1
+    image: local/frontend-one:1.0
+    container_name: frontend-one
+    environment:
+      BG_COLOR: "#f2f4f8"
+    ports:
+      - "30080:80"

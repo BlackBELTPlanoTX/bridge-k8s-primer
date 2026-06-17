@@ -1,0 +1,10 @@
+services:
+  frontend-two:
+    build:
+      context: ./app2
+    image: local/frontend-two:1.0
+    container_name: frontend-two
+    environment:
+      BG_COLOR: "#DDDDDD"
+    ports:
+      - "30081:80"

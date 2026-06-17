@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-one-config
+data:
+  BG_COLOR: "#f2f4f8"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-one-pod
+spec:
+  containers:
+    - name: frontend-one
+      image: local/frontend-one:1.0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-one-svc
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 32080

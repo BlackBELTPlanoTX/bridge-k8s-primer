@@ -1,0 +1,6 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - app1/k8s/kustomize/overlays/dev
+  - app1/k8s/kustomize/overlays/test
+  - app1/k8s/kustomize/overlays/prod

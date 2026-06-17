@@ -2,6 +2,18 @@
 
 This repo now includes all starter files, so you can focus on the Docker and Kubernetes flow.
 
+---
+
+# 🔧 **BEFORE YOU START: CREATE YOUR OWN BRANCH**
+
+```bash
+git checkout -b your-name/k8s-primer
+```
+
+**Make all changes on your personal branch, not on main.**
+
+---
+
 ## Included Files
 
 - `app1/index.html`

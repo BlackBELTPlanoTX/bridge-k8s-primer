@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-one-pod
+  labels:
+    app: frontend-one
+spec:
+  containers:
+    - name: frontend-one
+      image: local/frontend-one:1.0
+      imagePullPolicy: IfNotPresent
+      env:
+        - name: BG_COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-one-config
+              key: BG_COLOR
+              optional: true
+      ports:
+        - containerPort: 80
