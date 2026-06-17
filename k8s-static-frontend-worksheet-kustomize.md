@@ -169,6 +169,71 @@ kubectl get all -n lesson-dev
 
 Repeat for `test` and `prod` overlays for each app.
 
+## Validate service deployment
+
+Check that both pods and services are running:
+
+Windows (PowerShell):
+
+```powershell
+kubectl get pods -n lesson-dev
+kubectl get svc -n lesson-dev
+```
+
+macOS/Linux (bash/zsh):
+
+```bash
+kubectl get pods -n lesson-dev
+kubectl get svc -n lesson-dev
+```
+
+Expected output:
+- Both `frontend-one-pod` and `frontend-two-pod` should show `STATUS: Running`
+- `frontend-one-svc` and `frontend-two-svc` should show `TYPE: NodePort`
+- `frontend-one-svc` should have port mapping including `30080`
+- `frontend-two-svc` should have port mapping including `30081`
+
+## Access and verify in browser
+
+Once pods are running, open your browser and navigate to:
+
+- **App 1 (Dev):** http://localhost:30080
+- **App 2 (Dev):** http://localhost:30081
+
+You should see the static HTML pages with dev environment colors:
+- App 1 dev: light blue background (#e7f7ff)
+- App 2 dev: light yellow background (#fff6df)
+
+## If browser access fails on Windows
+
+Use `kubectl port-forward` to route traffic:
+
+Windows (PowerShell):
+
+```powershell
+kubectl port-forward svc/frontend-one-svc 30080:80 -n lesson-dev
+```
+
+Then open http://localhost:30080 in your browser. Use `Ctrl+C` to stop port forwarding.
+
+## Quick test with curl
+
+Windows (PowerShell):
+
+```powershell
+curl http://localhost:30080
+curl http://localhost:30081
+```
+
+macOS/Linux (bash/zsh):
+
+```bash
+curl http://localhost:30080
+curl http://localhost:30081
+```
+
+Both should return HTTP 200 and HTML content.
+
 ## Reflection questions
 
 1. Why should each app keep its own Kustomize base and overlays?

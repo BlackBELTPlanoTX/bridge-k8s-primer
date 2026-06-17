@@ -147,31 +147,63 @@ Apply the Service manifest:
 
 Reminder: stay in repo root for this command.
 
+Windows (PowerShell):
+
 ```powershell
 kubectl apply -f app1/k8s/service.yaml
 kubectl get svc frontend-one-svc
 ```
 
-Open the app at:
+macOS/Linux (bash/zsh):
 
-- http://localhost:30080
+```bash
+kubectl apply -f app1/k8s/service.yaml
+kubectl get svc frontend-one-svc
+```
 
-Optional check:
+### Verify the Service is exposing a NodePort
+
+Windows (PowerShell):
 
 ```powershell
 kubectl get svc frontend-one-svc
 ```
 
-- You should see `30080` in the `PORT(S)` column.
+macOS/Linux (bash/zsh):
 
-If `localhost:30080` is not reachable on your machine:
+```bash
+kubectl get svc frontend-one-svc
+```
+
+Look for `30080` in the `PORT(S)` column (format: `80:30080/TCP`).
+
+### Access the service in your browser
+
+Open your browser and navigate to:
+
+- http://localhost:30080
+
+You should see the App 1 static HTML page with a light blue background (#f2f4f8).
+
+### If localhost:30080 is not reachable
+
+Use `kubectl port-forward` as a fallback:
+
+Windows (PowerShell):
 
 ```powershell
 kubectl port-forward svc/frontend-one-svc 30080:80
 ```
 
-- Keep that terminal running, then browse to `http://localhost:30080`.
-- Use `Ctrl+C` in that terminal to stop port forwarding.
+macOS/Linux (bash/zsh):
+
+```bash
+kubectl port-forward svc/frontend-one-svc 30080:80
+```
+
+Keep that terminal running, then browse to `http://localhost:30080`.
+
+Use `Ctrl+C` in that terminal to stop port forwarding.
 
 Concept:
 
@@ -214,7 +246,17 @@ The files are already provided for you under `app2` and `app2/k8s`.
 
 Reminder: change into `app2` first, then return to repo root after build.
 
+Windows (PowerShell):
+
 ```powershell
+cd app2
+docker build -t local/frontend-two:1.0 .
+cd ..
+```
+
+macOS/Linux (bash/zsh):
+
+```bash
 cd app2
 docker build -t local/frontend-two:1.0 .
 cd ..
@@ -224,6 +266,8 @@ cd ..
 
 Reminder: run these from repo root so `app2/k8s/...` paths work.
 
+Windows (PowerShell):
+
 ```powershell
 kubectl apply -f app2/k8s/namespace.yaml
 kubectl apply -f app2/k8s/configmap.yaml
@@ -232,26 +276,61 @@ kubectl apply -f app2/k8s/service.yaml
 kubectl get all -n lesson-bonus
 ```
 
-Access bonus app:
+macOS/Linux (bash/zsh):
 
-- http://localhost:30081
+```bash
+kubectl apply -f app2/k8s/namespace.yaml
+kubectl apply -f app2/k8s/configmap.yaml
+kubectl apply -f app2/k8s/pod.yaml
+kubectl apply -f app2/k8s/service.yaml
+kubectl get all -n lesson-bonus
+```
 
-Optional check:
+### Verify the second app is running
+
+Windows (PowerShell):
 
 ```powershell
+kubectl get pods -n lesson-bonus
 kubectl get svc frontend-two-svc -n lesson-bonus
 ```
 
-- You should see `30081` in the `PORT(S)` column.
+macOS/Linux (bash/zsh):
 
-If `localhost:30081` is not reachable on your machine:
+```bash
+kubectl get pods -n lesson-bonus
+kubectl get svc frontend-two-svc -n lesson-bonus
+```
+
+Both pod and service should exist. Look for `30081` in the service `PORT(S)` column.
+
+### Access the bonus app in your browser
+
+Open your browser and navigate to:
+
+- http://localhost:30081
+
+You should see the App 2 static HTML page with a light gray background (#DDDDDD).
+
+### If localhost:30081 is not reachable
+
+Use `kubectl port-forward` as a fallback:
+
+Windows (PowerShell):
 
 ```powershell
 kubectl port-forward svc/frontend-two-svc 30081:80 -n lesson-bonus
 ```
 
-- Keep that terminal running, then browse to `http://localhost:30081`.
-- Use `Ctrl+C` in that terminal to stop port forwarding.
+macOS/Linux (bash/zsh):
+
+```bash
+kubectl port-forward svc/frontend-two-svc 30081:80 -n lesson-bonus
+```
+
+Keep that terminal running, then browse to `http://localhost:30081`.
+
+Use `Ctrl+C` in that terminal to stop port forwarding.
 
 Hints to reinforce learning:
 

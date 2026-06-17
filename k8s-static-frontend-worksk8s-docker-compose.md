@@ -68,7 +68,7 @@ services:
       - "30081:80"
 ```
 
-## Run and verify
+## Deploy and expose services
 
 From repo root:
 
@@ -86,10 +86,52 @@ docker compose up --build -d
 docker compose ps
 ```
 
-Check in browser:
+## Validate services are running
 
-- http://localhost:30080
-- http://localhost:30081
+Check container status:
+
+Windows (PowerShell):
+
+```powershell
+docker compose ps
+```
+
+macOS/Linux (bash/zsh):
+
+```bash
+docker compose ps
+```
+
+Expected output: both `frontend-one` and `frontend-two` should show status `Up`.
+
+## Access and verify in browser
+
+Once containers are running, open your browser and navigate to:
+
+- **App 1:** http://localhost:30080
+- **App 2:** http://localhost:30081
+
+You should see the static HTML pages with their respective background colors:
+- App 1: light blue background (#f2f4f8)
+- App 2: light gray background (#DDDDDD)
+
+## Quick test with curl
+
+Windows (PowerShell):
+
+```powershell
+curl http://localhost:30080
+curl http://localhost:30081
+```
+
+macOS/Linux (bash/zsh):
+
+```bash
+curl http://localhost:30080
+curl http://localhost:30081
+```
+
+Both should return HTTP 200 and HTML content.
 
 ## Reflection questions
 
