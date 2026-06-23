@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: frontend-one-config
 data:
-  BG_COLOR: "#f2f4f8"
+  BG_COLOR: "#227933"
